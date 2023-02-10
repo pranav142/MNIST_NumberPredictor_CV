@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from tensorflow.keras.layers import Conv2D, Input, Dense, MaxPool2D, BatchNormalization, Flatten, GlobalAvgPool2D
 
+from DeepLearning_Models import functional_model, myModel
+from my_utils import display_some_examples, predict_some_examples
+
 # Three Approaches to building deep learning models
 # 1. Tensorflow.keras.sequential
-# 2. Functional Approach => Function that returns a model
-# 3. Tensorflow.keras.models: Inherit a model from a class
-
 model = tensorflow.keras.Sequential(
     [
         Input(shape=(28,28,1)),
@@ -25,49 +25,6 @@ model = tensorflow.keras.Sequential(
         Dense(10, activation='softmax')
     ]
 )
-
-def display_some_examples(examples, labels):
-
-    # sets figure window size
-    plt.figure(figsize=(10,10),)
-
-    for i in range(25):
-
-        # random index value between 0 and max number of samples
-        idx = np.random.randint(0, examples.shape[0]-1)
-        
-        img = examples[idx]
-        label = labels[idx]
-        
-        # creates subplots in a 5,5 grid
-        plt.subplot(5,5, i+1)
-        plt.title(str(label))
-        # right layout gives even and clear spacing
-        plt.tight_layout()
-        # makes images gray scale
-        plt.imshow(img, cmap='gray')
-    
-    plt.show()
-
-def predict_some_examples(examples, labels, predictions):
-
-    plt.figure(figsize=(10,10))
-
-    for i in range(25):
-
-        idx = np.random.randint(0, examples.shape[0]-1)
-
-        img = examples[idx]
-        label = labels[idx]
-
-        prediction = np.argmax(predictions[idx])
-        plt.subplot(5,5, i+1)
-        title = str(prediction) + " Actual: " + str(np.argmax(label))
-        plt.title(title)
-        plt.tight_layout()
-        plt.imshow(img, cmap='gray')
-    
-    plt.show()
 
 if __name__ == '__main__':
 

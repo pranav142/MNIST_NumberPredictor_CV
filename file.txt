@@ -1,0 +1,2 @@
+C:\Users\pknad\miniconda3\Scripts\activate.bat
+conda activate tf2.11
